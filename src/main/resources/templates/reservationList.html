@@ -1,0 +1,215 @@
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
+
+	<th:block th:fragment="content">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>호텔 예약 관리 페이지</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+
+			background-color: #f2f2f2;
+		}
+
+		.container {
+
+			margin: 0 auto;
+
+		}
+
+		h2 {
+			margin-top: 0;
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-bottom: 20px;
+		}
+
+		th,
+		td {
+			padding: 10px;
+			text-align: left;
+			border-bottom: 1px solid #ccc;
+		}
+
+		thead {
+			background-color: #f9f9f9;
+		}
+
+		.btn {
+			padding: 8px 12px;
+			background-color: #4CAF50;
+			color: #fff;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+
+		.btn-small {
+			padding: 6px 10px;
+		}
+
+		.btn-edit {
+			background-color: #4CAF50;
+		}
+
+		.btn-delete {
+			background-color: #f44336;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+
+		<h2>예약 내역</h2>
+		<table class="reservation-table">
+			<thead>
+				<tr>
+					<th>예약 번호</th>
+					<th>예약 생성일</th>
+					<th>고객명</th>
+					<th>총 금액</th>
+					<th>예약 취소</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="reservation : ${reservtionList}"
+					th:onclick="showReservationDetails([[${reservation.reservation_id}]])">
+					<td th:text="${reservation.reservation_id}"></td>
+					<td th:text="${reservation.createdAt}" style="color: blue; cursor: pointer"></td>
+					<td th:text="${reservation.username}"></td>
+					<td th:text="${reservation.totalPrice}"></td>
+					<td>
+						<button class="btn btn-small btn-delete" th:onclick="deleteReservation([[${reservation.reservation_id}]])">취소</button>
+					</td>
+					<!--<td><a th:href="@{/admin/reservationList/detail(reservation_id = ${reservation.reservation_id})}">보기</a>-->
+					</td>
+				</tr>
+				<!-- 다른 예약들도 동일한 방식으로 추가 -->
+				<!-- 예약 데이터는 서버에서 동적으로 가져와야 함 -->
+			</tbody>
+		</table>
+
+		<h2>예약 상세 내역</h2>	
+		<table id="reservationDetailsTable">
+			<thead>
+				<tr>
+					<th>예약 날짜</th>
+					<th>객실 번호</th>
+					<th>객실 타입</th>
+				</tr>
+			</thead>
+			<tbody id="reservationDetailsBody">
+				<!-- 주문 상세 내역을 여기에 동적으로 추가 -->
+			</tbody>
+		</table>
+
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		/*$(document).ready(function () {
+			// 예약 상세 보기 버튼 클릭 시 이벤트 처리
+			$(".view-details-btn").click(function () {
+				// 예약 아이디 가져오기
+				var reservationId = $("input[name='reservation_id']").val();
+				console.log(reservationId);
+				// AJAX 요청 보내기
+				$.ajax({
+					type: "GET",
+					url: "/admin/reservationList/detail",
+					data: {reservation_id: reservationId}, // 예약 아이디를 URL 파라미터로 보냄
+					success: function (data) {
+						// 서버에서 받아온 데이터를 활용하여 리다이렉트 처리 (예제는 /reservation-details 페이지로 리다이렉트)
+						// data에는 서버에서 전달한 JSON 데이터가 들어있습니다.
+
+
+					},
+					error: function (xhr, status, error) {
+						// 에러 처리
+						console.error(error);
+					}
+				});
+			});
+		});*/
+		function deleteReservation(reservation_id) {
+			let data = {
+				id: reservation_id,
+			};
+
+			fetch('/admin/reservation/remove', {
+				method: 'DELETE',
+				headers: {
+					'Content-Type': 'application/json; charset=utf-8'
+				},
+				body: JSON.stringify(data)
+			})
+				.then(response => response.json())
+				.then(result => {
+					result == -1 ? alert("객실을 이용중인 예약이있습니다.") : location.reload()
+				})
+				.catch(error => {
+					console.log(error);
+				});
+
+		}
+
+		function showReservationDetails(reservation_id) {
+
+			var reservationDetailsBody = document.getElementById('reservationDetailsBody');
+			reservationDetailsBody.innerHTML = '';
+
+
+			$.ajax({
+				type: "GET",
+				url: "/admin/reservationList/detail",
+				data: {reservation_id: reservation_id}, // 예약 아이디를 URL 파라미터로 보냄
+				success: function (result) {
+					var tableBody = '';
+					result.forEach(function (item) {
+						tableBody += '<tr>' +
+							'<td>' + item.date + '</td>' +
+							'<td>' + item.roomNumber + '</td>' +
+							'<td>' + item.roomName + '</td>' +
+							'</tr>';
+					});
+					reservationDetailsBody.innerHTML = tableBody;
+
+				},
+				error: function (xhr, status, error) {
+					// 에러 처리
+					console.error(error);
+				}
+			});
+			
+		}
+
+		function deleteReservationDetail(reservation_detail_id) {
+			let data = {
+				id: reservation_detail_id,
+			};
+			$.ajax({
+				type: 'DELETE',
+				url: '/admin/reservationdetails/remove',
+				dataType: 'json',
+				contentType: 'application/json; charset=utf-8',
+				data: JSON.stringify(data),
+			}).done((result) => {
+				location.reload();
+			}).fail((error) => {
+				console.log(error);
+			});
+
+		}
+	</script>
+</body>
+
+</html>
+	</th:block>
+	
+</th:block>

@@ -1,0 +1,120 @@
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
+
+	<th:block th:fragment="content">
+<head>
+    <meta charset="UTF-8">
+    <title>호텔 예약하기</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 50px 0;
+            color: #333;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color:olive; 
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color:darkolivegreen;
+       
+        }
+    </style>
+</head>
+<body>
+    <h1>호텔 예약하기</h1>
+    <form id="reservation-form">
+        <label for="check-in-date">체크인 날짜</label>
+        <input type="date" id="check-in-date" name="check-in-date" required>
+
+        <label for="check-out-date">체크아웃 날짜</label>
+        <input type="date" id="check-out-date" name="check-out-date" required>
+
+        <label for="room-type">객실 유형</label>
+        <select id="room-type" name="room-type" required>
+            <option th:each="roomType : ${roomTypes}" th:value="${roomType.id}" th:text="${roomType.roomName}"></option>
+        </select>
+
+        <input type="submit" value="예약하기">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#reservation-form").submit(function(event) {
+                event.preventDefault();
+                // 예약 양식 데이터를 수집하여 JSON으로 묶습니다.
+                var formData = {
+                    checkInDate: $("#check-in-date").val(),
+                    checkOutDate: $("#check-out-date").val(),
+                    roomtype_id: $("#room-type").val(),
+                };
+
+                // 데이터를 JSON 형식으로 변환합니다.
+                var jsonData = JSON.stringify(formData);
+
+                // Ajax 요청을 보냅니다.
+                $.ajax({
+                    url: "/home/reservation/add", // 실제 서버 API 엔드포인트를 입력합니다.
+                    type: "POST",
+                    dataType:'json',
+                    contentType: "application/json; charset=utf-8", // JSON 데이터를 보내기 위해 contentType을 지정합니다.
+                    data: jsonData,
+                    success: function(response) {
+                        // 서버로부터의 응답을 처리합니다.
+                        console.log(response);
+                        console.log(typeof response);
+                        response >= 0 ? alert("예약이 완료되었습니다!") : alert("해당 타입의 빈 방이 없습니다.")               
+                    },
+                    error: function(xhr, status, error) {
+                        // 오류 발생 시 처리합니다.
+                        console.log(error);
+                        alert("예약 요청을 처리하는 중 오류가 발생했습니다.");
+                    }
+                });
+            });
+        });
+    </script>
+    </form>
+</body>
+</html>
+	</th:block>
+	
+</th:block>

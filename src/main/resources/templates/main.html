@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>메인페이지</title>
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="/css/styles.css" rel="stylesheet" />
+<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">  
+<style>
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	margin: 0;
+	background-image: url('/assets/background.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	position: relative;
+}
+
+#page-top {
+	flex: 1;
+}
+
+footer {
+	background-color: olive;
+	opacity: 70%;
+}
+
+.btn-olive {
+	background-color: olive;
+	border-color: olive;
+	color: white;
+}
+
+.btn.btn-olive {
+	font-size: 17px;
+	padding: 14px 24px;
+	background-color: olive;
+	color: white;
+	border: 2px solid lightgoldenrodyellow;
+	opacity: 95%;
+	border-radius: 8px;
+}
+
+.btn-olive:hover {
+	background-color: darkolivegreen;
+	color: silver;
+}
+
+nav {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	padding: 10px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: rgba(128, 128, 0, 0.5); /* Olive 색상에 투명도 0.5 적용 */
+	z-index: 2; /* 네비게이션을 다른 컨텐츠 위에 표시하기 위해 z-index 설정 */
+}
+
+nav a {
+	text-decoration: none;
+	color: #fff;
+	margin: 0 10px;
+}
+
+#right-btns {
+	margin-left: auto;
+}
+
+#right-btns a {
+    color: #fff;
+    margin: 0 10px;
+    transition: color 0.3s ease; /* Add a smooth transition for color change */
+}
+
+#right-btns a:hover {
+    color: lightgray; /* Change color to grey on hover */
+}
+
+
+html, body {
+	height: 100%;
+}
+</style>
+</head>
+
+<body id="page-top">
+
+	<!-- Navigation-->
+	<nav>
+		<div id="left-btn">
+			<a href="#"
+				style="font-family: 'Lobster', cursive; text-decoration: none; color: #fff; font-size: 1.5em; ">
+				The Green</a>
+		</div>
+
+		<div id="right-btns">
+			<a href="#">로그인</a> <a href="#">회원가입</a> <a href="#">고객센터</a>
+		</div>
+	</nav>
+
+	<div id="page-top">
+
+		<header class="masthead">
+			<div
+				class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+				<div class="d-flex justify-content-center">
+					<div class="text-center">
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						
+						<h1 class="text-white-50 mx-auto mt-2 mb-2"
+							style="font-family: 'Lobster', cursive; font-size: 9em; text-shadow: 2px 3px 1px olive;">
+							The  Green</h1>
+						<h2 class="text-white-50 mx-auto mt-2 mb-3"
+							style="font-size: 2em; text-shadow: 1px 1px 1px gold;">HOTELS
+							& RESORTS</h2>
+						<a class="btn btn-olive" href="#about">객실예약</a>
+
+					</div>
+				</div>
+			</div>
+		</header>
+
+	</div>
+
+
+
+	<!-- Bootstrap core JS-->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Core theme JS-->
+	<script src="/js/scripts.js"></script>
+
+</body>
+
+</html>
