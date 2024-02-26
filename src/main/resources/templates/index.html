@@ -3,7 +3,7 @@
 	<th:block th:fragment="content">
 <head>
     <meta charset="UTF-8">
-    <title>호텔 예약 시스템</title>
+    <title>로그인 선택페이지</title>
     <!-- Font Awesome CDN 링크 추가 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -23,7 +23,7 @@
 
         a {
             display: inline-block;
-            margin: 10px;
+            
             padding: 15px 30px;
             background-color: olive; 
             color: #FFF;
@@ -38,10 +38,15 @@
     </style>
 </head>
 <body>
-    <h1>호텔 예약 시스템에 오신 것을 환영합니다</h1>
-    <p>역할을 선택해주세요:)</p>
-    <a th:href="@{/home}">사용자 <i class="fas fa-user"></i></a>
-    <a th:href="@{/admin}">관리자 <i class="fas fa-user-cog"></i></a>
+        <h1 class="text-white-50 mx-auto mt-2 mb-1"
+							style="font-family: 'Lobster', cursive; font-size: 9em; text-shadow: 2px 3px 1px olive;">
+							The  Green</h1>
+							
+							<h2 class="text-white-50 mx-auto mt-1 mb-4"
+							style="font-size: 2em; text-shadow: 1px 1px 1px gold;  text-align: center;">HOTELS
+							& RESORTS</h2>
+    <a th:href="@{/home}"><i class="fas fa-user"></i><br>사용자 로그인 </a>
+    <a th:href="@{/admin}"><i class="fas fa-user-cog"></i><br>관리자 로그인</a>
 </body>
 </html>
 	</th:block>

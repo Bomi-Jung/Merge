@@ -3,7 +3,7 @@
 	<th:block th:fragment="content">
 <head>
     <meta charset="UTF-8">
-    <title>호텔 예약 시스템</title>
+    <title>사용자 페이지</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
@@ -11,6 +11,9 @@
             margin: 0;
             padding: 0;
             background-color: #f7f7f7;
+            
+
+  
         }
 
         h1 {
@@ -50,13 +53,24 @@
             font-size: 36px;
             margin-right: 10px;
         }
+        
+        body, h1, h2, ul {
+    margin: 0;
+    padding: 0;
+}
     </style>
 </head>
-<body>
-    <h1><i class="fas fa-hotel icon"></i>호텔 예약 시스템</h1>
+<body style="margin-top: 3em;">
+    <h1 class="text-white-50 mx-auto mt-2 mb-1"
+							style="font-family: 'Lobster', cursive; font-size: 9em; text-shadow: 2px 3px 1px olive;">
+							The  Green</h1>
+							
+							<h2 class="text-white-50 mx-auto mt-1 mb-4"
+							style="font-size: 2em; text-shadow: 1px 1px 1px gold;  text-align: center;">HOTELS
+							& RESORTS</h2>
     <ul>
-        <li><a href="/home/reservation"><i class="fas fa-calendar-plus icon"></i>호텔 예약</a></li>
-        <li><a href="/home/reservationList"><i class="fas fa-history icon"></i>호텔 예약 내역</a></li>
+        <li><a href="/home/reservation"><i class="fas fa-calendar-plus icon"></i>객실예약</a></li>
+        <li><a href="/home/reservationList"><i class="fas fa-history icon"></i>예약내역 확인</a></li>
     </ul>
 </body>
 </html>

@@ -23,15 +23,21 @@ body {
 	background-position: center;
 	background-size: cover;
 	position: relative;
+	  min-height: 100vh;
 }
 
 #page-top {
 	flex: 1;
+	  flex-grow: 1; /* 추가된 부분 */
 }
 
-footer {
+#footerbar {
+        position: relative;
+
+        top:0px;
+
 	background-color: olive;
-	opacity: 70%;
+	opacity: 50%;
 }
 
 .btn-olive {
@@ -99,13 +105,13 @@ html, body {
 	<!-- Navigation-->
 	<nav>
 		<div id="left-btn">
-			<a href="#"
+			<a href="http://localhost:8100/main"
 				style="font-family: 'Lobster', cursive; text-decoration: none; color: #fff; font-size: 1.5em; ">
 				The Green</a>
 		</div>
 
 		<div id="right-btns">
-			<a href="#">로그인</a> <a href="#">회원가입</a> <a href="#">고객센터</a>
+			<a href="http://localhost:8100/">로그인</a> <a href="#">회원가입</a> <a href="#">고객센터</a>
 		</div>
 	</nav>
 
@@ -120,9 +126,7 @@ html, body {
 						<br>
 						<br>
 						<br>
-						<br>
-						<br>
-						<br>
+						
 						
 						<h1 class="text-white-50 mx-auto mt-2 mb-2"
 							style="font-family: 'Lobster', cursive; font-size: 9em; text-shadow: 2px 3px 1px olive;">
@@ -130,15 +134,33 @@ html, body {
 						<h2 class="text-white-50 mx-auto mt-2 mb-3"
 							style="font-size: 2em; text-shadow: 1px 1px 1px gold;">HOTELS
 							& RESORTS</h2>
-						<a class="btn btn-olive" href="#about">객실예약</a>
+						<a class="btn btn-olive" href="http://localhost:8100/home">객실예약</a>
 
 					</div>
 				</div>
 			</div>
 		</header>
+		 
+
+		 
+<!-- 		 <footer class="py-5 bg-dark" style="opacity: 60%; margin-top: auto;">
+    <div class="container px-4">
+        <p class="m-0 text-center text-white">Copyright &copy; 2조 2024</p>
+    </div>
+</footer> -->
+
+   
 
 	</div>
+	
+<div id="footerbar" style="height:60px" class="d-flex align-items-center justify-content-center">
+    <div>
+        <p class="m-0 text-center text-white">Copyright &copy; 2조 2024</p>
+    </div>
+</div>
 
+
+	
 
 
 	<!-- Bootstrap core JS-->
