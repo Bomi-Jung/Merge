@@ -143,6 +143,14 @@
 		footer {
         margin-top: auto;
     }
+    
+   #footerbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: olive;
+    height: 60px;
+}
 	</style>
 </head>
 
@@ -151,7 +159,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color: olive !important; opacity : 60%;" id="mainNav">
         <div class="container px-4">
-            <a class="navbar-brand" style="font-family: 'Lobster', cursive;"  href="#page-top">The Green</a>
+            <a class="navbar-brand" style="font-family: 'Lobster', cursive;"  href="http://localhost:8100/main">The Green</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
 
@@ -348,12 +356,13 @@
 	</script>
 
 
-    <!-- Footer-->
-    <footer class="py-5 bg-dark" style="background-color: olive !important; opacity : 60%;">
-        <div class="container px-4">
-            <p class="m-0 text-center text-white">Copyright &copy; 2조 2024</p>
-        </div>
-    </footer>
+<div id="footerbar" style="opacity: 60%; height:60px" class="d-flex align-items-center justify-content-center">
+
+    <div>
+        <p class="m-0 text-center text-white">Copyright &copy; 2조 2024</p>
+    </div>
+</div>
+
 
 
 	</script>
